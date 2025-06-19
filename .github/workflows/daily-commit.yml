@@ -1,0 +1,23 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '15 4 * * *'  # Runs daily at 04:15 UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit step - pavanKarthik2006
+        run: |
+          echo "TDSFU Daily run: $(date -u) TDSFU" >> daily-log.txt
+
+      - name: Git Commit and Push
+        run: |
+          git config user.name "
